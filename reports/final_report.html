@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>AI Assistant Analysis Report</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 2rem;
+    }
+    table {
+      border-collapse: collapse;
+      margin-bottom: 2rem;
+    }
+    th, td {
+      padding: 0.5rem 1rem;
+      border: 1px solid #ccc;
+      text-align: center;
+    }
+    h1, h2, h3 {
+      color: #333;
+    }
+    .container {
+      width: 95%;
+      margin: auto;
+    }
+    .images-section img {
+      max-width: 500px;
+      margin: 10px;
+      border: 1px solid #ddd;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>AI Assistant Analysis Report</h1>
+
+  <h2>1. Summary Statistics</h2>
+  <p>The table below shows the descriptive statistics (including percentiles) for each model’s grades.</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Metric</th>
+        
+        <th>grade_without_examples</th>
+        
+        <th>grade_base</th>
+        
+        <th>grade_fine_tuned</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      
+      
+      
+      <tr>
+        
+        
+        <td>count</td>
+        
+        
+          
+          
+          <td>92.0</td>
+        
+          
+          
+          <td>92.0</td>
+        
+          
+          
+          <td>92.0</td>
+        
+      </tr>
+      
+      <tr>
+        
+        
+        <td>mean</td>
+        
+        
+          
+          
+          <td>4.358695652173913</td>
+        
+          
+          
+          <td>4.739130434782608</td>
+        
+          
+          
+          <td>4.543478260869565</td>
+        
+      </tr>
+      
+      <tr>
+        
+        
+        <td>std</td>
+        
+        
+          
+          
+          <td>0.8063146624773381</td>
+        
+          
+          
+          <td>0.4415150045959088</td>
+        
+          
+          
+          <td>0.6361464251628642</td>
+        
+      </tr>
+      
+      <tr>
+        
+        
+        <td>min</td>
+        
+        
+          
+          
+          <td>2.0</td>
+        
+          
+          
+          <td>4.0</td>
+        
+          
+          
+          <td>2.0</td>
+        
+      </tr>
+      
+      <tr>
+        
+        
+        <td>25%</td>
+        
+        
+          
+          
+          <td>4.0</td>
+        
+          
+          
+          <td>4.0</td>
+        
+          
+          
+          <td>4.0</td>
+        
+      </tr>
+      
+      <tr>
+        
+        
+        <td>50%</td>
+        
+        
+          
+          
+          <td>5.0</td>
+        
+          
+          
+          <td>5.0</td>
+        
+          
+          
+          <td>5.0</td>
+        
+      </tr>
+      
+      <tr>
+        
+        
+        <td>75%</td>
+        
+        
+          
+          
+          <td>5.0</td>
+        
+          
+          
+          <td>5.0</td>
+        
+          
+          
+          <td>5.0</td>
+        
+      </tr>
+      
+      <tr>
+        
+        
+        <td>max</td>
+        
+        
+          
+          
+          <td>5.0</td>
+        
+          
+          
+          <td>5.0</td>
+        
+          
+          
+          <td>5.0</td>
+        
+      </tr>
+      
+    </tbody>
+  </table>
+
+  <h2>2. Correlation Matrix</h2>
+  <p>The correlation matrix between the different grade columns:</p>
+  <table>
+    <thead>
+      <tr>
+        <th></th>
+        
+        <th>grade_without_examples</th>
+        
+        <th>grade_base</th>
+        
+        <th>grade_fine_tuned</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      
+      <tr>
+        <td><strong>grade_without_examples</strong></td>
+        
+        
+        <td>
+          
+            1.00
+          
+        </td>
+        
+        
+        <td>
+          
+            0.48
+          
+        </td>
+        
+        
+        <td>
+          
+            0.60
+          
+        </td>
+        
+      </tr>
+      
+      <tr>
+        <td><strong>grade_base</strong></td>
+        
+        
+        <td>
+          
+            0.48
+          
+        </td>
+        
+        
+        <td>
+          
+            1.00
+          
+        </td>
+        
+        
+        <td>
+          
+            0.47
+          
+        </td>
+        
+      </tr>
+      
+      <tr>
+        <td><strong>grade_fine_tuned</strong></td>
+        
+        
+        <td>
+          
+            0.60
+          
+        </td>
+        
+        
+        <td>
+          
+            0.47
+          
+        </td>
+        
+        
+        <td>
+          
+            1.00
+          
+        </td>
+        
+      </tr>
+      
+    </tbody>
+  </table>
+
+  <h2>3. Visualizations</h2>
+  <div class="images-section">
+    <h3>Histograms</h3>
+    
+    <div>
+      <p><strong>grade_without_examples</strong></p>
+      <img src="../data/processed/grade_without_examples_hist.png" alt="Histogram of grade_without_examples" />
+    </div>
+    
+    <div>
+      <p><strong>grade_base</strong></p>
+      <img src="../data/processed/grade_base_hist.png" alt="Histogram of grade_base" />
+    </div>
+    
+    <div>
+      <p><strong>grade_fine_tuned</strong></p>
+      <img src="../data/processed/grade_fine_tuned_hist.png" alt="Histogram of grade_fine_tuned" />
+    </div>
+    
+  
+    <h3>Boxplot</h3>
+    <p>Distribution of all model grades:</p>
+    <img src="../data/processed/grades_boxplot.png" alt="Boxplot of Grades" />
+  
+    <h3>Correlation Heatmap</h3>
+    <img src="../data/processed/correlation_heatmap.png" alt="Correlation Heatmap" />
+  </div>
+  
+</div>
+</body>
+</html>

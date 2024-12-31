@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>AI Assistant Analysis Report</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 2rem;
+    }
+    table {
+      border-collapse: collapse;
+      margin-bottom: 2rem;
+    }
+    th, td {
+      padding: 0.5rem 1rem;
+      border: 1px solid #ccc;
+      text-align: center;
+    }
+    h1, h2, h3 {
+      color: #333;
+    }
+    .container {
+      width: 95%;
+      margin: auto;
+    }
+    .images-section img {
+      max-width: 500px;
+      margin: 10px;
+      border: 1px solid #ddd;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>AI Assistant Analysis Report</h1>
+
+  <h2>1. Summary Statistics</h2>
+  <p>The table below shows the descriptive statistics (including percentiles) for each model’s grades.</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Metric</th>
+        {% for col in grade_columns %}
+        <th>{{ col }}</th>
+        {% endfor %}
+      </tr>
+    </thead>
+    <tbody>
+      {# Instead of enumerate, we use the length of summary_df["metric"] #}
+      {% set num_rows = summary_df["metric"]|length %}
+      {% for row_index in range(num_rows) %}
+      <tr>
+        {# Extract the metric name from summary_df["metric"] #}
+        {% set metric_name = summary_df["metric"][row_index] %}
+        <td>{{ metric_name }}</td>
+        {# For each column, get the value in the same row index #}
+        {% for col in grade_columns %}
+          {# If the value is None, show N/A #}
+          {% set val = summary_df[col][row_index] %}
+          <td>{{ val if val is not none else 'N/A' }}</td>
+        {% endfor %}
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <h2>2. Correlation Matrix</h2>
+  <p>The correlation matrix between the different grade columns:</p>
+  <table>
+    <thead>
+      <tr>
+        <th></th>
+        {% for col in grade_columns %}
+        <th>{{ col }}</th>
+        {% endfor %}
+      </tr>
+    </thead>
+    <tbody>
+      {% for row_col in grade_columns %}
+      <tr>
+        <td><strong>{{ row_col }}</strong></td>
+        {% for col2 in grade_columns %}
+        {% set corr_val = corr_df.loc[row_col, col2] %}
+        <td>
+          {% if corr_val is not none %}
+            {{ '{:.2f}'.format(corr_val) }}
+          {% else %}
+            N/A
+          {% endif %}
+        </td>
+        {% endfor %}
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <h2>3. Visualizations</h2>
+  <div class="images-section">
+    <h3>Histograms</h3>
+    {% for col in grade_columns %}
+    <div>
+      <p><strong>{{ col }}</strong></p>
+      <img src="{{ processed_dir }}/{{ col }}_hist.png" alt="Histogram of {{ col }}" />
+    </div>
+    {% endfor %}
+  
+    <h3>Boxplot</h3>
+    <p>Distribution of all model grades:</p>
+    <img src="{{ processed_dir }}/grades_boxplot.png" alt="Boxplot of Grades" />
+  
+    <h3>Correlation Heatmap</h3>
+    <img src="{{ processed_dir }}/correlation_heatmap.png" alt="Correlation Heatmap" />
+  </div>
+  
+</div>
+</body>
+</html>
