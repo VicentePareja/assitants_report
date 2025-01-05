@@ -3,10 +3,10 @@
 """
 analyze_data.py
 
-This script loads the CSV data from `data/raw/unified_results.csv`,
-performs a more in-depth analysis, computes descriptive statistics 
-(including percentiles), visualizes the data, and saves a summary CSV in
-`data/processed/metrics_summary.csv`.
+This script loads the CSV data from `data/raw/House of Spencer_unified_results.csv`,
+performs a more in-depth analysis, computes descriptive statistics (including percentiles),
+visualizes the data, and saves a summary CSV in `data/processed/metrics_summary.csv`.
+It also saves best/worst cases in `data/processed/best_worst_cases.csv`.
 
 Usage:
     python analyze_data.py
@@ -59,8 +59,8 @@ def summarize_grades(df, grade_columns):
 
 def find_best_worst(df, grade_columns, n=5):
     """
-    Find the best and worst 'n' entries for each grade column.
-    Returns a nested dictionary with 'best' and 'worst' data subsets.
+    Find the best (top 'n') and worst (bottom 'n') entries for each grade column.
+    Returns a nested dictionary with 'best' and 'worst' DataFrames for each column.
     """
     best_worst_dict = {}
     for col in grade_columns:
@@ -117,9 +117,10 @@ def main():
     # 1. Set paths
     data_dir = os.path.join("data", "raw")
     processed_dir = os.path.join("data", "processed")
-    input_file = os.path.join(data_dir, "unified_results.csv")
+    input_file = os.path.join(data_dir, "House of Spencer_unified_results.csv")
     output_summary_file = os.path.join(processed_dir, "metrics_summary.csv")
     output_correlation_file = os.path.join(processed_dir, "correlation_matrix.csv")
+    output_best_worst_file = os.path.join(processed_dir, "best_worst_cases.csv")
 
     # Ensure processed directory exists
     os.makedirs(processed_dir, exist_ok=True)
@@ -127,14 +128,24 @@ def main():
     # 2. Load the data
     df = pd.read_csv(input_file)  # Adjust encoding or separator if needed
 
-    # 3. Select relevant columns
+    # 3. Define the relevant grade columns and map them to the machine response columns
     grade_columns = [
         "grade_without_examples",
         "grade_base",
-        "grade_fine_tuned"
+        "grade_fine-tuned_whithout_examples",
+        "grade_fine-tuned_with_examples"
     ]
 
-    # Convert these columns to numeric; coerce invalid parsing to NaN
+    # This dictionary maps each grade column to its corresponding model-response column in CSV
+    # Make sure the keys match your grade_columns exactly.
+    response_map = {
+        "grade_without_examples": "House of Spencer_without examples",
+        "grade_base": "House of Spencer_base",
+        "grade_fine-tuned_whithout_examples": "House of Spencer_fine-tuned_without_examples",
+        "grade_fine-tuned_with_examples": "House of Spencer_fine-tuned_with_examples"
+    }
+
+    # Convert these columns (the numeric ones) to numeric; coerce invalid parsing to NaN
     for col in grade_columns:
         df[col] = pd.to_numeric(df[col], errors="coerce")
 
@@ -142,10 +153,11 @@ def main():
     stats_dict = summarize_grades(df, grade_columns)
 
     # 5. Find the best/worst n entries for each grade column
-    best_worst_dict = find_best_worst(df, grade_columns, n=5)
+    #    We'll only take 3 here as per your request, but you can adjust
+    best_worst_dict = find_best_worst(df, grade_columns, n=3)
 
-    # 6. Compute average of top 5 and bottom 5 for each grade column
-    top_bottom_dict = compute_top_bottom_averages(df, grade_columns, n=5)
+    # 6. Compute average of top 3 and bottom 3 for each grade column
+    top_bottom_dict = compute_top_bottom_averages(df, grade_columns, n=3)
 
     # 7. Correlation analysis across the grade columns
     corr_df = correlation_analysis(df, grade_columns)
@@ -167,21 +179,9 @@ def main():
         print(f"  75%:   {col_stats['75%']}")
         print(f"  Max:   {col_stats['max']}")
 
-        print("\n  --> Worst 5 Entries:")
-        if len(best_worst_dict[col]["worst"]) > 0:
-            print(best_worst_dict[col]["worst"][["question", "human_answer", col]])
-        else:
-            print("No data")
-
-        print("\n  --> Best 5 Entries:")
-        if len(best_worst_dict[col]["best"]) > 0:
-            print(best_worst_dict[col]["best"][["question", "human_answer", col]])
-        else:
-            print("No data")
-
-        # Print top/bottom 5 average
-        print(f"\n  --> Average of Bottom 5 for {col}: {top_bottom_dict[col]['bottom_n_avg']}")
-        print(f"  --> Average of Top 5 for {col}: {top_bottom_dict[col]['top_n_avg']}")
+        # Print top/bottom 3 average
+        print(f"\n  --> Average of Bottom 3 for {col}: {top_bottom_dict[col]['bottom_n_avg']}")
+        print(f"  --> Average of Top 3 for {col}: {top_bottom_dict[col]['top_n_avg']}")
 
     # Print correlation matrix
     print("\n===== CORRELATION MATRIX =====")
@@ -190,11 +190,8 @@ def main():
     ###############################################################################
     #                         SAVE RESULTS TO CSV/TABLES                          #
     ###############################################################################
-    # We'll build a DataFrame that holds all our stats, including percentiles
-
-    # Define the order of metrics for the summary table
+    # 1. Build a DataFrame that holds all our stats, including percentiles
     metrics_order = ["count", "mean", "std", "min", "25%", "50%", "75%", "max"]
-
     summary_data = {"metric": metrics_order}
     for col in grade_columns:
         col_stats = stats_dict[col]
@@ -217,31 +214,80 @@ def main():
     corr_df.to_csv(output_correlation_file)
     print(f"Correlation matrix saved to: {output_correlation_file}")
 
+    # 3. Save best/worst 3 in a dedicated CSV
+    #    We'll create a row for each best/worst instance, storing the question,
+    #    human_response, model column, grade, AND the machine response for that column.
+    bw_rows = []
+    for col in grade_columns:
+        # For clarity, let's figure out which model response column to use
+        model_col_name = response_map[col]
+
+        best_df = best_worst_dict[col]["best"]
+        worst_df = best_worst_dict[col]["worst"]
+
+        for _, row in best_df.iterrows():
+            bw_rows.append({
+                "type": "best",
+                "model_column": col,
+                "grade": row[col],
+                "question": row["question"],
+                "human_response": row["human_response"],
+                "machine_response": row.get(model_col_name, None)
+            })
+
+        for _, row in worst_df.iterrows():
+            bw_rows.append({
+                "type": "worst",
+                "model_column": col,
+                "grade": row[col],
+                "question": row["question"],
+                "human_response": row["human_response"],
+                "machine_response": row.get(model_col_name, None)
+            })
+
+    bw_df = pd.DataFrame(bw_rows)
+    bw_df.to_csv(output_best_worst_file, index=False)
+    print(f"Best/worst 3 cases saved to: {output_best_worst_file}")
+
     ###############################################################################
     #                          DATA VISUALIZATIONS                                #
     ###############################################################################
     
     # -- Distribution plots (histograms + KDE) for each grade column
+    #    We'll force the same x-axis range for all. For example, [0,5].
+    x_min, x_max = 0, 5  # Adjust if your data can go beyond 5 or below 0
+
     for col in grade_columns:
         plt.figure(figsize=(6, 4))
         sns.histplot(df[col], kde=True, bins=10, color='blue')
+        
+        # Force the same x-axis on all histograms
+        plt.xlim(x_min, x_max)
+        
+        # Plot the average as a vertical line
+        mean_val = df[col].mean()
+        if not np.isnan(mean_val):
+            plt.axvline(x=mean_val, color='red', linestyle='--', label=f'Mean={mean_val:.2f}')
+        
         plt.title(f"Histogram of {col}")
         plt.xlabel("Score")
         plt.ylabel("Frequency")
+        plt.legend()
         plt.tight_layout()
+        
         hist_path = os.path.join(processed_dir, f"{col}_hist.png")
         plt.savefig(hist_path, dpi=100)
         plt.close()
         print(f"Histogram for {col} saved to {hist_path}")
 
     # -- Boxplots for each grade column
-    #    (Check if at least one column has valid numeric data to avoid errors)
     valid_data = df[grade_columns].dropna(how='all')  # Drop rows that are all NaN
     if not valid_data.empty:
         plt.figure(figsize=(8, 6))
         sns.boxplot(data=valid_data[grade_columns], orient="v")
         plt.title("Box Plot of Grades for Each Model")
         plt.ylabel("Score")
+        plt.ylim(x_min, x_max)  # Force same scale on boxplot
         plt.xticks(range(len(grade_columns)), grade_columns, rotation=10)
         plt.tight_layout()
         boxplot_path = os.path.join(processed_dir, "grades_boxplot.png")
@@ -262,6 +308,7 @@ def main():
     print(f"Correlation heatmap saved to {heatmap_path}")
 
     print("\nAnalysis complete. All visualizations and summary files are saved in 'data/processed/'.")
+
 
 if __name__ == "__main__":
     main()

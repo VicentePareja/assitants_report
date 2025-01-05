@@ -11,6 +11,7 @@
     table {
       border-collapse: collapse;
       margin-bottom: 2rem;
+      width: 100%;
     }
     th, td {
       padding: 0.5rem 1rem;
@@ -28,6 +29,15 @@
       max-width: 500px;
       margin: 10px;
       border: 1px solid #ddd;
+    }
+    .best-worst-section table {
+      margin-top: 1rem;
+    }
+    .best-worst-section th {
+      background-color: #f9f9f9;
+    }
+    .best-worst-section td {
+      text-align: left;
     }
   </style>
 </head>
@@ -47,18 +57,20 @@
       </tr>
     </thead>
     <tbody>
-      {# Instead of enumerate, we use the length of summary_df["metric"] #}
       {% set num_rows = summary_df["metric"]|length %}
       {% for row_index in range(num_rows) %}
       <tr>
-        {# Extract the metric name from summary_df["metric"] #}
         {% set metric_name = summary_df["metric"][row_index] %}
         <td>{{ metric_name }}</td>
-        {# For each column, get the value in the same row index #}
         {% for col in grade_columns %}
-          {# If the value is None, show N/A #}
           {% set val = summary_df[col][row_index] %}
-          <td>{{ val if val is not none else 'N/A' }}</td>
+          <td>
+            {% if val is not none %}
+              {{ '{:.2f}'.format(val) if val is number else val }}
+            {% else %}
+              N/A
+            {% endif %}
+          </td>
         {% endfor %}
       </tr>
       {% endfor %}
@@ -112,7 +124,68 @@
     <h3>Correlation Heatmap</h3>
     <img src="{{ processed_dir }}/correlation_heatmap.png" alt="Correlation Heatmap" />
   </div>
-  
+
+  <h2>4. Best & Worst Cases</h2>
+  <div class="best-worst-section">
+    {% for model_col, data in best_worst_dict.items() %}
+      <h3>Model Column: <em>{{ model_col }}</em></h3>
+      
+      <!-- Best 3 -->
+      <h4>Best 3</h4>
+      {% if data.best|length > 0 %}
+      <table>
+        <thead>
+          <tr>
+            <th>Grade</th>
+            <th>Question</th>
+            <th>Human Response</th>
+            <th>Machine Response</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in data.best %}
+          <tr>
+            <td>{{ row.grade }}</td>
+            <td>{{ row.question }}</td>
+            <td>{{ row.human_response }}</td>
+            <td>{{ row.machine_response }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% else %}
+      <p>No 'best' data available.</p>
+      {% endif %}
+
+      <!-- Worst 3 -->
+      <h4>Worst 3</h4>
+      {% if data.worst|length > 0 %}
+      <table>
+        <thead>
+          <tr>
+            <th>Grade</th>
+            <th>Question</th>
+            <th>Human Response</th>
+            <th>Machine Response</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in data.worst %}
+          <tr>
+            <td>{{ row.grade }}</td>
+            <td>{{ row.question }}</td>
+            <td>{{ row.human_response }}</td>
+            <td>{{ row.machine_response }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% else %}
+      <p>No 'worst' data available.</p>
+      {% endif %}
+    {% endfor %}
+  </div>
+
 </div>
 </body>
 </html>

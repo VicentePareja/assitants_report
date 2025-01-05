@@ -11,6 +11,7 @@
     table {
       border-collapse: collapse;
       margin-bottom: 2rem;
+      width: 100%;
     }
     th, td {
       padding: 0.5rem 1rem;
@@ -29,6 +30,15 @@
       margin: 10px;
       border: 1px solid #ddd;
     }
+    .best-worst-section table {
+      margin-top: 1rem;
+    }
+    .best-worst-section th {
+      background-color: #f9f9f9;
+    }
+    .best-worst-section td {
+      text-align: left;
+    }
   </style>
 </head>
 <body>
@@ -46,171 +56,284 @@
         
         <th>grade_base</th>
         
-        <th>grade_fine_tuned</th>
+        <th>grade_fine-tuned_whithout_examples</th>
+        
+        <th>grade_fine-tuned_with_examples</th>
         
       </tr>
     </thead>
     <tbody>
       
       
-      
       <tr>
-        
         
         <td>count</td>
         
+          
+          <td>
+            
+              96.00
+            
+          </td>
         
           
-          
-          <td>92.0</td>
+          <td>
+            
+              96.00
+            
+          </td>
         
           
-          
-          <td>92.0</td>
+          <td>
+            
+              96.00
+            
+          </td>
         
           
-          
-          <td>92.0</td>
+          <td>
+            
+              95.00
+            
+          </td>
         
       </tr>
       
       <tr>
-        
         
         <td>mean</td>
         
+          
+          <td>
+            
+              2.84
+            
+          </td>
         
           
-          
-          <td>4.358695652173913</td>
+          <td>
+            
+              4.85
+            
+          </td>
         
           
-          
-          <td>4.739130434782608</td>
+          <td>
+            
+              2.85
+            
+          </td>
         
           
-          
-          <td>4.543478260869565</td>
+          <td>
+            
+              4.75
+            
+          </td>
         
       </tr>
       
       <tr>
-        
         
         <td>std</td>
         
+          
+          <td>
+            
+              1.64
+            
+          </td>
         
           
-          
-          <td>0.8063146624773381</td>
+          <td>
+            
+              0.35
+            
+          </td>
         
           
-          
-          <td>0.4415150045959088</td>
+          <td>
+            
+              1.62
+            
+          </td>
         
           
-          
-          <td>0.6361464251628642</td>
+          <td>
+            
+              0.44
+            
+          </td>
         
       </tr>
       
       <tr>
-        
         
         <td>min</td>
         
+          
+          <td>
+            
+              1.00
+            
+          </td>
         
           
-          
-          <td>2.0</td>
+          <td>
+            
+              4.00
+            
+          </td>
         
           
-          
-          <td>4.0</td>
+          <td>
+            
+              1.00
+            
+          </td>
         
           
-          
-          <td>2.0</td>
+          <td>
+            
+              4.00
+            
+          </td>
         
       </tr>
       
       <tr>
-        
         
         <td>25%</td>
         
+          
+          <td>
+            
+              1.00
+            
+          </td>
         
           
-          
-          <td>4.0</td>
+          <td>
+            
+              5.00
+            
+          </td>
         
           
-          
-          <td>4.0</td>
+          <td>
+            
+              1.00
+            
+          </td>
         
           
-          
-          <td>4.0</td>
+          <td>
+            
+              4.50
+            
+          </td>
         
       </tr>
       
       <tr>
-        
         
         <td>50%</td>
         
+          
+          <td>
+            
+              4.00
+            
+          </td>
         
           
-          
-          <td>5.0</td>
+          <td>
+            
+              5.00
+            
+          </td>
         
           
-          
-          <td>5.0</td>
+          <td>
+            
+              4.00
+            
+          </td>
         
           
-          
-          <td>5.0</td>
+          <td>
+            
+              5.00
+            
+          </td>
         
       </tr>
       
       <tr>
-        
         
         <td>75%</td>
         
+          
+          <td>
+            
+              4.00
+            
+          </td>
         
           
-          
-          <td>5.0</td>
+          <td>
+            
+              5.00
+            
+          </td>
         
           
-          
-          <td>5.0</td>
+          <td>
+            
+              4.00
+            
+          </td>
         
           
-          
-          <td>5.0</td>
+          <td>
+            
+              5.00
+            
+          </td>
         
       </tr>
       
       <tr>
         
-        
         <td>max</td>
         
+          
+          <td>
+            
+              5.00
+            
+          </td>
         
           
-          
-          <td>5.0</td>
+          <td>
+            
+              5.00
+            
+          </td>
         
           
-          
-          <td>5.0</td>
+          <td>
+            
+              5.00
+            
+          </td>
         
           
-          
-          <td>5.0</td>
+          <td>
+            
+              5.00
+            
+          </td>
         
       </tr>
       
@@ -228,7 +351,9 @@
         
         <th>grade_base</th>
         
-        <th>grade_fine_tuned</th>
+        <th>grade_fine-tuned_whithout_examples</th>
+        
+        <th>grade_fine-tuned_with_examples</th>
         
       </tr>
     </thead>
@@ -247,14 +372,21 @@
         
         <td>
           
-            0.48
+            0.36
           
         </td>
         
         
         <td>
           
-            0.60
+            0.95
+          
+        </td>
+        
+        
+        <td>
+          
+            0.40
           
         </td>
         
@@ -266,7 +398,7 @@
         
         <td>
           
-            0.48
+            0.36
           
         </td>
         
@@ -280,26 +412,73 @@
         
         <td>
           
-            0.47
+            0.29
+          
+        </td>
+        
+        
+        <td>
+          
+            0.58
           
         </td>
         
       </tr>
       
       <tr>
-        <td><strong>grade_fine_tuned</strong></td>
+        <td><strong>grade_fine-tuned_whithout_examples</strong></td>
         
         
         <td>
           
-            0.60
+            0.95
           
         </td>
         
         
         <td>
           
-            0.47
+            0.29
+          
+        </td>
+        
+        
+        <td>
+          
+            1.00
+          
+        </td>
+        
+        
+        <td>
+          
+            0.44
+          
+        </td>
+        
+      </tr>
+      
+      <tr>
+        <td><strong>grade_fine-tuned_with_examples</strong></td>
+        
+        
+        <td>
+          
+            0.40
+          
+        </td>
+        
+        
+        <td>
+          
+            0.58
+          
+        </td>
+        
+        
+        <td>
+          
+            0.44
           
         </td>
         
@@ -330,8 +509,13 @@
     </div>
     
     <div>
-      <p><strong>grade_fine_tuned</strong></p>
-      <img src="../data/processed/grade_fine_tuned_hist.png" alt="Histogram of grade_fine_tuned" />
+      <p><strong>grade_fine-tuned_whithout_examples</strong></p>
+      <img src="../data/processed/grade_fine-tuned_whithout_examples_hist.png" alt="Histogram of grade_fine-tuned_whithout_examples" />
+    </div>
+    
+    <div>
+      <p><strong>grade_fine-tuned_with_examples</strong></p>
+      <img src="../data/processed/grade_fine-tuned_with_examples_hist.png" alt="Histogram of grade_fine-tuned_with_examples" />
     </div>
     
   
@@ -342,7 +526,332 @@
     <h3>Correlation Heatmap</h3>
     <img src="../data/processed/correlation_heatmap.png" alt="Correlation Heatmap" />
   </div>
-  
+
+  <h2>4. Best & Worst Cases</h2>
+  <div class="best-worst-section">
+    
+      <h3>Model Column: <em>grade_without_examples</em></h3>
+      
+      <!-- Best 3 -->
+      <h4>Best 3</h4>
+      
+      <table>
+        <thead>
+          <tr>
+            <th>Grade</th>
+            <th>Question</th>
+            <th>Human Response</th>
+            <th>Machine Response</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          <tr>
+            <td>5.0</td>
+            <td>¿Cómo puedo pagar por un masaje o una consulta de nutrición?</td>
+            <td>¡Hola! 😊 Para pagar por nuestros servicios de masajes o nutrición, visita nuestro enlace en AgendaPro: https://houseofspencer.site.agendapro.com/cl/sucursal/165852. Ahí podrás seleccionar el servicio y realizar el pago. 💳 ¿Puedo ayudarte con algo más?</td>
+            <td>¡Hola! Soy House of Spencer. Puedes pagar tus masajes o consultas de nutrición a través de AgendaPro. Solo ingresa a: https://houseofspencer.site.agendapro.com/cl/sucursal/165852. ¡Si necesitas más ayuda, avísame! 😊</td>
+          </tr>
+          
+          <tr>
+            <td>5.0</td>
+            <td>¿Cómo puedo pagar por un masaje o una consulta de nutrición?</td>
+            <td>¡Hola! 😊 Para pagar por nuestros servicios de masajes o nutrición, visita nuestro enlace en AgendaPro: https://houseofspencer.site.agendapro.com/cl/sucursal/165852. Ahí podrás seleccionar el servicio y realizar el pago. 💳 ¿Puedo ayudarte con algo más?</td>
+            <td>¡Hola! Soy de House of Spencer. Puedes pagar por masajes y consultas de nutrición a través de AgendaPro. Te dejo el enlace: https://houseofspencer.site.agendapro.com/cl/sucursal/165852. Si necesitas más ayuda, házmelo saber. 😊</td>
+          </tr>
+          
+          <tr>
+            <td>5.0</td>
+            <td>¿Cómo puedo pagar por un masaje o una consulta de nutrición?</td>
+            <td>¡Hola! 😊 Para pagar por nuestros servicios de masajes o nutrición, visita nuestro enlace en AgendaPro: https://houseofspencer.site.agendapro.com/cl/sucursal/165852. Ahí podrás seleccionar el servicio y realizar el pago. 💳 ¿Puedo ayudarte con algo más?</td>
+            <td>¡Hola! Soy House of Spencer. Puedes pagar por masajes o consultas de nutrición a través de AgendaPro. Solo visita: https://houseofspencer.site.agendapro.com/cl/sucursal/165852. Si tienes más dudas, ¡pregunta! 😊</td>
+          </tr>
+          
+        </tbody>
+      </table>
+      
+
+      <!-- Worst 3 -->
+      <h4>Worst 3</h4>
+      
+      <table>
+        <thead>
+          <tr>
+            <th>Grade</th>
+            <th>Question</th>
+            <th>Human Response</th>
+            <th>Machine Response</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          <tr>
+            <td>1.0</td>
+            <td>¿Puedo obtener un reembolso con orden médica?</td>
+            <td>Sí, como todas nuestras clases son realizadas por kinesiólogos, nuestras sesiones son reembolsables con orden médica. 📝 ¿Necesitas más información?</td>
+            <td>¡Hola! Soy House of Spencer. Sí, puedes obtener un reembolso por las sesiones si tienes una orden médica. ¿Necesitas más información?</td>
+          </tr>
+          
+          <tr>
+            <td>1.0</td>
+            <td>¿Puedo obtener un reembolso con orden médica?</td>
+            <td>Sí, como todas nuestras clases son realizadas por kinesiólogos, nuestras sesiones son reembolsables con orden médica. 📝 ¿Necesitas más información?</td>
+            <td>¡Hola! Soy House of Spencer. Sí, las sesiones son reembolsables con orden médica. Si tienes más dudas, no dudes en preguntar. 😊</td>
+          </tr>
+          
+          <tr>
+            <td>1.0</td>
+            <td>¿Puedo obtener un reembolso con orden médica?</td>
+            <td>Sí, como todas nuestras clases son realizadas por kinesiólogos, nuestras sesiones son reembolsables con orden médica. 📝 ¿Necesitas más información?</td>
+            <td>¡Hola! Soy de House of Spencer. Sí, las sesiones son reembolsables con orden médica. Si necesitas más información, no dudes en preguntar. 😊</td>
+          </tr>
+          
+        </tbody>
+      </table>
+      
+    
+      <h3>Model Column: <em>grade_base</em></h3>
+      
+      <!-- Best 3 -->
+      <h4>Best 3</h4>
+      
+      <table>
+        <thead>
+          <tr>
+            <th>Grade</th>
+            <th>Question</th>
+            <th>Human Response</th>
+            <th>Machine Response</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          <tr>
+            <td>5.0</td>
+            <td>Hola, ¿cómo puedo agendar una clase de entrenamiento funcional?</td>
+            <td>¡Hola! 💪 Puedes agendar tu clase a través de la app BoxMagic o en https://auth.boxmagic.cl/. Si no eres alumno, agenda tu clase de prueba gratuita en: 📲 https://boxmagic.cl/sp/HouseofSpencer24. ¿Necesitas ayuda con algo más?</td>
+            <td>¡Hola! 💪 Puedes agendar tu clase a través de la app BoxMagic o en https://auth.boxmagic.cl/. Si no eres alumno, agenda tu clase de prueba gratuita en: 📲 https://boxmagic.cl/sp/HouseofSpencer24. ¿Necesitas ayuda con algo más?</td>
+          </tr>
+          
+          <tr>
+            <td>5.0</td>
+            <td>Hola, ¿cómo puedo agendar una clase de entrenamiento funcional?</td>
+            <td>¡Hola! 💪 Puedes agendar tu clase a través de la app BoxMagic o en https://auth.boxmagic.cl/. Si no eres alumno, agenda tu clase de prueba gratuita en: 📲 https://boxmagic.cl/sp/HouseofSpencer24. ¿Necesitas ayuda con algo más?</td>
+            <td>¡Hola! 😊 Puedes agendar tu clase a través de la app BoxMagic o en https://auth.boxmagic.cl/. Si no eres alumno, agenda tu clase de prueba gratuita aquí: 📲 https://boxmagic.cl/sp/HouseofSpencer24. ¿Necesitas ayuda con algo más?</td>
+          </tr>
+          
+          <tr>
+            <td>5.0</td>
+            <td>Hola, ¿cómo puedo agendar una clase de entrenamiento funcional?</td>
+            <td>¡Hola! 💪 Puedes agendar tu clase a través de la app BoxMagic o en https://auth.boxmagic.cl/. Si no eres alumno, agenda tu clase de prueba gratuita en: 📲 https://boxmagic.cl/sp/HouseofSpencer24. ¿Necesitas ayuda con algo más?</td>
+            <td>¡Hola! 💪 Puedes agendar tu clase a través de la app BoxMagic o en https://auth.boxmagic.cl/. Si no eres alumno, agenda tu clase de prueba gratuita en: 📲 https://boxmagic.cl/sp/HouseofSpencer24. ¿Necesitas ayuda con algo más?</td>
+          </tr>
+          
+        </tbody>
+      </table>
+      
+
+      <!-- Worst 3 -->
+      <h4>Worst 3</h4>
+      
+      <table>
+        <thead>
+          <tr>
+            <th>Grade</th>
+            <th>Question</th>
+            <th>Human Response</th>
+            <th>Machine Response</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          <tr>
+            <td>4.0</td>
+            <td>¿Qué horarios de clases tienen disponibles?</td>
+            <td>Tenemos clases de lunes a viernes en la mañana, mediodía y tarde, y los sábados en la mañana. 📅 ¿Te gustaría saber los horarios específicos?</td>
+            <td>¡Hola! 😊 Tenemos clases de lunes a viernes en la mañana, mediodía y tarde, y los sábados en la mañana. 📅 ¿Te gustaría saber los horarios específicos?</td>
+          </tr>
+          
+          <tr>
+            <td>4.0</td>
+            <td>Hola</td>
+            <td>¡Hola! 😊 En House of Spencer te ayudamos a llegar al siguiente nivel y te acompañamos en todo tu proceso de recuperación ante lesiones o a ponerte en forma. 🏃‍♂️ ✨ No solo es ejercicio, es un estilo de vida ✨ ¿Cómo puedo ayudarte hoy? Puedo ayudarte a agendar clases, resolver dudas sobre nuestros servicios y más.</td>
+            <td>¡Hola! 😊 Soy House of Spencer, el asistente del centro de entrenamiento. ¿En qué puedo ayudarte hoy?</td>
+          </tr>
+          
+          <tr>
+            <td>4.0</td>
+            <td>Hola, ¿son solo clases o se puede ir a entrenar por mi cuenta?</td>
+            <td>¡Hola! 😊 Muchas gracias por escribir a House of Spencer. Tenemos clases guiadas semi-personalizadas y personalizadas. Por el momento no ofrecemos el servicio de Open-Gym. 🏋️‍♀️ ¿Te gustaría venir a una de nuestras clases de prueba gratuita? Agenda aquí: 📲 https://boxmagic.cl/sp/HouseofSpencer24</td>
+            <td>¡Hola! 😊 En House of Spencer ofrecemos clases guiadas semi-personalizadas y personalizadas. Por el momento, no contamos con el servicio de Open-Gym. 🏋️\u200d♀️ ¿Te gustaría agendar una clase de prueba gratuita? 📲</td>
+          </tr>
+          
+        </tbody>
+      </table>
+      
+    
+      <h3>Model Column: <em>grade_fine-tuned_whithout_examples</em></h3>
+      
+      <!-- Best 3 -->
+      <h4>Best 3</h4>
+      
+      <table>
+        <thead>
+          <tr>
+            <th>Grade</th>
+            <th>Question</th>
+            <th>Human Response</th>
+            <th>Machine Response</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          <tr>
+            <td>5.0</td>
+            <td>¿Cómo puedo pagar por un masaje o una consulta de nutrición?</td>
+            <td>¡Hola! 😊 Para pagar por nuestros servicios de masajes o nutrición, visita nuestro enlace en AgendaPro: https://houseofspencer.site.agendapro.com/cl/sucursal/165852. Ahí podrás seleccionar el servicio y realizar el pago. 💳 ¿Puedo ayudarte con algo más?</td>
+            <td>¡Hola! 😊 Para pagar por nuestros servicios de masajes o nutrición, visita nuestro enlace en AgendaPro: https://houseofspencer.site.agendapro.com/cl/sucursal/165852. Ahí podrás seleccionar el servicio y realizar el pago. 💳 ¿Necesitas ayuda con algo más?</td>
+          </tr>
+          
+          <tr>
+            <td>5.0</td>
+            <td>¿Cómo puedo pagar por un masaje o una consulta de nutrición?</td>
+            <td>¡Hola! 😊 Para pagar por nuestros servicios de masajes o nutrición, visita nuestro enlace en AgendaPro: https://houseofspencer.site.agendapro.com/cl/sucursal/165852. Ahí podrás seleccionar el servicio y realizar el pago. 💳 ¿Puedo ayudarte con algo más?</td>
+            <td>¡Hola! 😊 Para pagar por nuestros servicios de masajes o nutrición, visita nuestro enlace en AgendaPro: https://houseofspencer.site.agendapro.com/cl/sucursal/165852. Ahí podrás seleccionar el servicio y realizar el pago. 💳 ¿Necesitas ayuda con algo más?</td>
+          </tr>
+          
+          <tr>
+            <td>5.0</td>
+            <td>¿Cómo puedo pagar por un masaje o una consulta de nutrición?</td>
+            <td>¡Hola! 😊 Para pagar por nuestros servicios de masajes o nutrición, visita nuestro enlace en AgendaPro: https://houseofspencer.site.agendapro.com/cl/sucursal/165852. Ahí podrás seleccionar el servicio y realizar el pago. 💳 ¿Puedo ayudarte con algo más?</td>
+            <td>¡Hola! 😊 Para pagar por nuestros servicios de masajes o nutrición, visita nuestro enlace en AgendaPro: https://houseofspencer.site.agendapro.com/cl/sucursal/165852. Ahí podrás seleccionar el servicio y realizar el pago. 💳 ¿Necesitas ayuda con algo más?</td>
+          </tr>
+          
+        </tbody>
+      </table>
+      
+
+      <!-- Worst 3 -->
+      <h4>Worst 3</h4>
+      
+      <table>
+        <thead>
+          <tr>
+            <th>Grade</th>
+            <th>Question</th>
+            <th>Human Response</th>
+            <th>Machine Response</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          <tr>
+            <td>1.0</td>
+            <td>¿Puedo obtener un reembolso con orden médica?</td>
+            <td>Sí, como todas nuestras clases son realizadas por kinesiólogos, nuestras sesiones son reembolsables con orden médica. 📝 ¿Necesitas más información?</td>
+            <td>Sí, como todas nuestras clases son realizadas por kinesiólogos, nuestras sesiones son reembolsables con orden médica. 📝 ¿Necesitas más información?</td>
+          </tr>
+          
+          <tr>
+            <td>1.0</td>
+            <td>¿Puedo obtener un reembolso con orden médica?</td>
+            <td>Sí, como todas nuestras clases son realizadas por kinesiólogos, nuestras sesiones son reembolsables con orden médica. 📝 ¿Necesitas más información?</td>
+            <td>Sí, como todas nuestras clases son realizadas por kinesiólogos, nuestras sesiones son reembolsables con orden médica. 📝 ¿Necesitas más información?</td>
+          </tr>
+          
+          <tr>
+            <td>1.0</td>
+            <td>¿Puedo obtener un reembolso con orden médica?</td>
+            <td>Sí, como todas nuestras clases son realizadas por kinesiólogos, nuestras sesiones son reembolsables con orden médica. 📝 ¿Necesitas más información?</td>
+            <td>Sí, como todas nuestras clases son realizadas por kinesiólogos, nuestras sesiones son reembolsables con orden médica. 📝 ¿Necesitas más información?</td>
+          </tr>
+          
+        </tbody>
+      </table>
+      
+    
+      <h3>Model Column: <em>grade_fine-tuned_with_examples</em></h3>
+      
+      <!-- Best 3 -->
+      <h4>Best 3</h4>
+      
+      <table>
+        <thead>
+          <tr>
+            <th>Grade</th>
+            <th>Question</th>
+            <th>Human Response</th>
+            <th>Machine Response</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          <tr>
+            <td>5.0</td>
+            <td>Hola, ¿cómo puedo agendar una clase de entrenamiento funcional?</td>
+            <td>¡Hola! 💪 Puedes agendar tu clase a través de la app BoxMagic o en https://auth.boxmagic.cl/. Si no eres alumno, agenda tu clase de prueba gratuita en: 📲 https://boxmagic.cl/sp/HouseofSpencer24. ¿Necesitas ayuda con algo más?</td>
+            <td>¡Hola! 💪 Puedes agendar tu clase a través de la app BoxMagic o en https://auth.boxmagic.cl/. Si no eres alumno, agenda tu clase de prueba gratuita en: 📲 https://boxmagic.cl/sp/HouseofSpencer24. ¿Necesitas ayuda con algo más?</td>
+          </tr>
+          
+          <tr>
+            <td>5.0</td>
+            <td>Hola, ¿cómo puedo agendar una clase de entrenamiento funcional?</td>
+            <td>¡Hola! 💪 Puedes agendar tu clase a través de la app BoxMagic o en https://auth.boxmagic.cl/. Si no eres alumno, agenda tu clase de prueba gratuita en: 📲 https://boxmagic.cl/sp/HouseofSpencer24. ¿Necesitas ayuda con algo más?</td>
+            <td>¡Hola! 💪 Puedes agendar tu clase a través de la app BoxMagic o en https://auth.boxmagic.cl/. Si no eres alumno, agenda tu clase de prueba gratuita en: 📲 https://boxmagic.cl/sp/HouseofSpencer24. ¿Necesitas ayuda con algo más?</td>
+          </tr>
+          
+          <tr>
+            <td>5.0</td>
+            <td>Hola, ¿cómo puedo agendar una clase de entrenamiento funcional?</td>
+            <td>¡Hola! 💪 Puedes agendar tu clase a través de la app BoxMagic o en https://auth.boxmagic.cl/. Si no eres alumno, agenda tu clase de prueba gratuita en: 📲 https://boxmagic.cl/sp/HouseofSpencer24. ¿Necesitas ayuda con algo más?</td>
+            <td>¡Hola! 💪 Puedes agendar tu clase a través de la app BoxMagic o en https://auth.boxmagic.cl/. Si no eres alumno, agenda tu clase de prueba gratuita en: 📲 https://boxmagic.cl/sp/HouseofSpencer24. ¿Necesitas ayuda con algo más?</td>
+          </tr>
+          
+        </tbody>
+      </table>
+      
+
+      <!-- Worst 3 -->
+      <h4>Worst 3</h4>
+      
+      <table>
+        <thead>
+          <tr>
+            <th>Grade</th>
+            <th>Question</th>
+            <th>Human Response</th>
+            <th>Machine Response</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          <tr>
+            <td>4.0</td>
+            <td>¿Cuánto cuestan las sesiones?</td>
+            <td>Ofrecemos 10 sesiones por $120.000 CLP y 20 sesiones por $220.000 CLP. 🏋️‍♀️ Los planes duran 2 meses. ¿Te gustaría más información?</td>
+            <td>Ofrecemos 10 sesiones por $120.000 CLP y 20 sesiones por $220.000 CLP. 🏋️\u200d♀️ Los planes duran 2 meses. ¿Te gustaría más información?</td>
+          </tr>
+          
+          <tr>
+            <td>4.0</td>
+            <td>¿Qué horarios de clases tienen disponibles?</td>
+            <td>Tenemos clases de lunes a viernes en la mañana, mediodía y tarde, y los sábados en la mañana. 📅 ¿Te gustaría saber los horarios específicos?</td>
+            <td>Tenemos clases de lunes a viernes en la mañana, mediodía y tarde, y los sábados en la mañana. 📅 ¿Te gustaría saber los horarios específicos?</td>
+          </tr>
+          
+          <tr>
+            <td>4.0</td>
+            <td>¿Qué horarios de clases tienen disponibles?</td>
+            <td>Tenemos clases de lunes a viernes en la mañana, mediodía y tarde, y los sábados en la mañana. 📅 ¿Te gustaría saber los horarios específicos?</td>
+            <td>Tenemos clases de lunes a viernes en la mañana, mediodía y tarde, y los sábados en la mañana. 📅 ¿Te gustaría saber los horarios específicos?</td>
+          </tr>
+          
+        </tbody>
+      </table>
+      
+    
+  </div>
+
 </div>
 </body>
 </html>
